@@ -70,7 +70,7 @@ const projects = [
     description:
       "This portfolio, built as a modern single-page app with smooth animations.",
     tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
-    github: "https://github.com/your-username/portfolio-minimal", // TODO: replace with real link
+    github: "https://github.com/nilvaes/portfolio",
     demo: "https://nilvaes.github.io/portfolio/",
   },
   {
