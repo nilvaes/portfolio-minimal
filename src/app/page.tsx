@@ -9,9 +9,27 @@ import {
   Globe,
   ExternalLink,
 } from "lucide-react";
+import { GlowButton } from "../components/GlowButton";
 
 const sectionVariant = {
   hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.12,
+    },
+  },
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0 },
 };
 
@@ -142,51 +160,81 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.5 }}
-              className="rounded-3xl border border-white/5 bg-zinc-900/70 px-5 py-8 shadow-xl shadow-black/50 backdrop-blur-md sm:px-7 sm:py-10"
+              className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900/90 via-slate-950 to-slate-950 px-5 py-9 shadow-2xl shadow-black/70 backdrop-blur-2xl sm:px-8 sm:py-12"
             >
+              {/* hero glows */}
+              <div className="pointer-events-none absolute inset-x-10 -top-40 h-64 bg-gradient-to-b from-cyan-400/50 via-cyan-500/5 to-transparent blur-3xl" />
+              <div className="pointer-events-none absolute inset-x-40 -top-10 h-40 bg-gradient-to-b from-sky-300/40 via-sky-500/0 to-transparent blur-2xl" />
+
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 Open to junior roles & internships
               </div>
-              <div className="mt-6 space-y-4">
-                <h1 className="text-balance text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl lg:text-5xl">
-                  Full Stack Developer focused on reliable web solutions.
-                </h1>
-                <p className="max-w-xl text-sm leading-relaxed text-zinc-400 sm:text-base">
-                  I&apos;m Ömer, a full stack web developer who enjoys turning ideas into simple, fast and{" "}
-                  <span className="font-semibold text-zinc-100">reliable web applications</span>. In my apprenticeship I
-                  build internal tools mainly with Vue.js and Nuxt on the frontend and Node.js with TypeScript on the
-                  backend, and I also explore React and Next.js in my personal projects.
-                </p>
-              </div>
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <a
-                  href="#projects"
-                  className="inline-flex items-center gap-2 rounded-full bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-950 shadow-sm shadow-black/40 transition hover:bg-white"
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+                className="mt-6 space-y-6"
+              >
+                <motion.div variants={staggerItem} className="space-y-3">
+                  <h1 className="text-balance text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl lg:text-5xl">
+                    Full Stack Developer focused on reliable web solutions.
+                  </h1>
+                  <p className="max-w-xl text-sm leading-relaxed text-zinc-300 sm:text-base">
+                    I&apos;m Ömer, a full stack web developer who enjoys turning ideas into simple, fast and{" "}
+                    <span className="font-semibold text-zinc-50">
+                      reliable web applications
+                    </span>
+                    . In my apprenticeship I build internal tools mainly with
+                    Vue.js and Nuxt on the frontend and Node.js with TypeScript
+                    on the backend, and I also explore React and Next.js in my
+                    personal projects.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  variants={staggerItem}
+                  className="flex flex-wrap items-center gap-3"
                 >
-                  View my projects
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:border-zinc-500 hover:bg-zinc-800/70"
+                  <GlowButton
+                    onClick={() =>
+                      document
+                        .getElementById("projects")
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
+                  >
+                    View my projects
+                    <ArrowRight className="h-4 w-4" />
+                  </GlowButton>
+                  <button
+                    onClick={() =>
+                      document
+                        .getElementById("contact")
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
+                    className="inline-flex items-center gap-2 rounded-full border border-zinc-600/80 bg-zinc-900/80 px-4 py-2 text-sm font-medium text-zinc-200 shadow-md shadow-black/40 transition hover:border-zinc-300 hover:bg-zinc-800/80"
+                  >
+                    Contact me
+                    <Mail className="h-4 w-4" />
+                  </button>
+                </motion.div>
+
+                <motion.div
+                  variants={staggerItem}
+                  className="flex flex-wrap items-center gap-3 text-xs text-zinc-400"
                 >
-                  Contact me
-                  <Mail className="h-4 w-4" />
-                </a>
-              </div>
-              <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-zinc-400">
-                <span className="text-zinc-500">Focused on</span>
-                <span className="rounded-full bg-zinc-800/80 px-3 py-1">
-                  Frontend UI
-                </span>
-                <span className="rounded-full bg-zinc-800/80 px-3 py-1">
-                  API design
-                </span>
-                <span className="rounded-full bg-zinc-800/80 px-3 py-1">
-                  Clean code
-                </span>
-              </div>
+                  <span className="text-zinc-500">Focused on</span>
+                  <span className="rounded-full bg-zinc-800/80 px-3 py-1">
+                    Frontend UI
+                  </span>
+                  <span className="rounded-full bg-zinc-800/80 px-3 py-1">
+                    API design
+                  </span>
+                  <span className="rounded-full bg-zinc-800/80 px-3 py-1">
+                    Clean code
+                  </span>
+                </motion.div>
+              </motion.div>
             </motion.section>
 
             {/* about */}
@@ -275,8 +323,9 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-3xl border border-white/5 bg-zinc-900/70 px-5 py-6 shadow-lg shadow-black/50 backdrop-blur-md sm:px-6 sm:py-7"
+              className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/85 px-5 py-6 shadow-xl shadow-black/60 backdrop-blur-xl sm:px-6 sm:py-7"
             >
+              <div className="pointer-events-none absolute inset-x-10 -top-10 h-20 bg-gradient-to-b from-cyan-400/30 via-cyan-400/0 to-transparent blur-2xl" />
               <div className="flex items-center justify-between gap-4">
                 <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
                   Projects
@@ -285,12 +334,19 @@ export default function Home() {
                   Curated, hands-on work
                 </span>
               </div>
-              <div className="mt-4 space-y-4">
+              <motion.div
+                className="mt-4 space-y-4"
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+              >
                 {projects.map((project) => (
-                  <article
+                  <motion.article
                     key={project.title}
-                    className="group rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4 transition hover:border-zinc-500/70 hover:bg-zinc-900"
+                    variants={staggerItem}
+                    className="group relative overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/80 p-4 shadow-lg shadow-black/50 transition hover:border-cyan-400/60 hover:bg-zinc-950"
                   >
+                    <div className="pointer-events-none absolute inset-x-6 -top-6 h-16 bg-gradient-to-b from-cyan-400/35 via-cyan-400/0 to-transparent blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <h3 className="text-sm font-semibold text-zinc-50">
@@ -338,9 +394,9 @@ export default function Home() {
                         </a>
                       )}
                     </div>
-                  </article>
+                  </motion.article>
                 ))}
-              </div>
+              </motion.div>
             </motion.section>
 
             {/* experience */}
@@ -350,8 +406,9 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="rounded-3xl border border-white/5 bg-zinc-900/70 px-5 py-6 shadow-lg shadow-black/50 backdrop-blur-md sm:px-6 sm:py-7"
+              className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/85 px-5 py-6 shadow-xl shadow-black/60 backdrop-blur-xl sm:px-6 sm:py-7"
             >
+              <div className="pointer-events-none absolute inset-x-6 -top-10 h-20 bg-gradient-to-b from-sky-400/25 via-sky-400/0 to-transparent blur-2xl" />
               <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
                 Experience & journey
               </h2>
