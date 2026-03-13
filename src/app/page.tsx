@@ -150,7 +150,7 @@ export default function Home() {
           </a>
         </header>
 
-        <div className="grid flex-1 gap-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+        <div className="flex-1 space-y-16 lg:space-y-20">
           {/* left column - hero, about, tech */}
           <section className="space-y-10">
             {/* hero */}
@@ -244,8 +244,10 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-3xl border border-white/5 bg-zinc-900/70 px-5 py-6 shadow-lg shadow-black/50 backdrop-blur-md sm:px-7 sm:py-7"
+              className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/85 px-5 py-7 shadow-xl shadow-black/60 backdrop-blur-xl sm:px-7 sm:py-9"
             >
+              {/* flowing glow from hero into about */}
+              <div className="pointer-events-none absolute inset-x-10 -top-10 h-24 bg-gradient-to-b from-cyan-400/35 via-cyan-400/0 to-transparent blur-2xl" />
               <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
                 About
               </h2>
@@ -269,8 +271,9 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="rounded-3xl border border-white/5 bg-zinc-900/70 px-5 py-6 shadow-lg shadow-black/50 backdrop-blur-md sm:px-7 sm:py-7"
+              className="relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/85 px-5 py-7 shadow-xl shadow-black/60 backdrop-blur-xl sm:px-7 sm:py-9"
             >
+              <div className="pointer-events-none absolute inset-x-8 -top-8 h-20 bg-gradient-to-b from-sky-400/25 via-sky-400/0 to-transparent blur-2xl" />
               <div className="flex items-center justify-between gap-4">
                 <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
                   Tech stack
@@ -315,7 +318,7 @@ export default function Home() {
           </section>
 
           {/* right column - projects, experience, contact */}
-          <section className="space-y-8 lg:space-y-6">
+          <section className="space-y-10">
             {/* projects */}
             <motion.section
               id="projects"
