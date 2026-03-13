@@ -1,5 +1,6 @@
  "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -107,6 +108,18 @@ const experience = [
 ];
 
 export default function Home() {
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("omer.savas@gmx.de");
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch {
+      // no-op on failure; we intentionally avoid throwing in UI
+    }
+  };
+
   return (
     <main className="relative min-h-screen w-full text-zinc-50">
       {/* background glow */}
@@ -141,13 +154,6 @@ export default function Home() {
               </a>
             ))}
           </nav>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 px-3 py-1.5 text-xs font-medium text-zinc-950 shadow-sm shadow-black/40 transition hover:bg-white"
-          >
-            <span>Let&apos;s talk</span>
-            <ArrowRight className="h-3.5 w-3.5" />
-          </a>
         </header>
 
         <div className="flex-1 space-y-16 lg:space-y-20">
@@ -196,6 +202,8 @@ export default function Home() {
                   variants={staggerItem}
                   className="flex flex-wrap items-center gap-3"
                 >
+                  
+
                   <GlowButton
                     onClick={() =>
                       document
@@ -206,6 +214,7 @@ export default function Home() {
                     View my projects
                     <ArrowRight className="h-4 w-4" />
                   </GlowButton>
+                 
                   <button
                     onClick={() =>
                       document
@@ -458,13 +467,14 @@ export default function Home() {
                 reach out. I&apos;m open to junior roles, internships and collaboration on interesting ideas.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
-                <a
-                  href="mailto:omer.savas@gmx.de"
-                  className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-sm font-medium text-emerald-950 shadow-sm shadow-emerald-950/40 transition hover:bg-white"
-                >
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-sm font-medium text-emerald-950 shadow-sm shadow-emerald-950/40 transition hover:bg-white"
+              >
                   <Mail className="h-4 w-4" />
-                  <span>Email me</span>
-                </a>
+                <span>{emailCopied ? "Email copied!" : "Email me"}</span>
+              </button>
                 <a
                   href="https://github.com/nilvaes"
                   target="_blank"

@@ -36,8 +36,10 @@ export function GlowButton({
           background: `radial-gradient(120px circle at ${position.x}px ${position.y}px, rgba(34,211,238,0.55), transparent 60%)`,
         }}
       />
-      <span className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-r from-cyan-500/35 via-sky-500/0 to-cyan-400/35 opacity-70" />
-      <span className="relative z-10">{children}</span>
+      <span className="pointer-events-none absolute inset-0 -z-20 bg-linear-to-r from-cyan-500/35 via-sky-500/0 to-cyan-400/35 opacity-70" />
+      <span className="relative z-10 inline-flex items-center gap-2 whitespace-nowrap">
+        {children}
+      </span>
     </button>
   );
 }
