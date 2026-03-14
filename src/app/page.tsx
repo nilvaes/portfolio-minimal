@@ -500,9 +500,6 @@ export default function Home() {
 
         <footer className="mt-8 flex items-center justify-between text-[0.7rem] text-zinc-500">
           <span>© {new Date().getFullYear()} Ömer. Built with Next.js.</span>
-          <span className="hidden sm:inline">
-            Minimal, focused, and always improving.
-          </span>
         </footer>
       </div>
     </main>
