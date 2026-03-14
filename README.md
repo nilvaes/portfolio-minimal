@@ -67,7 +67,8 @@ The app is intentionally small and focused. Most of the portfolio content lives 
 
 This is a standard Next.js application and can be deployed to any platform that supports Next.js:
 
-- Vercel (recommended)
+- **GitHub Pages** – Static export is configured. Push to `main`; the GitHub Action builds and deploys to GitHub Pages. Enable **Settings → Pages → Source: GitHub Actions**. The site will be at `https://<username>.github.io/portfolio-minimal/`.
+- Vercel (recommended for full Next.js features)
 - Netlify
 - Render
 - Custom Node.js hosting
@@ -78,6 +79,8 @@ For production builds:
 npm run build
 npm start
 ```
+
+For static export (e.g. GitHub Pages), the build outputs to the `out` folder.
 
 ---
 
