@@ -4,12 +4,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Github,
-  Linkedin,
   Mail,
   Globe,
   ExternalLink,
 } from "lucide-react";
+import { Github, Linkedin } from "../components/icons/brand-icons";
 import { GlowButton } from "../components/GlowButton";
 
 const sectionVariant = {
@@ -68,8 +67,8 @@ const projects = [
   {
     title: "Developer Portfolio",
     description:
-      "This portfolio, built as a modern single-page app with smooth animations.",
-    tech: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+      "This portfolio, built as a modern single-page app with React, TypeScript, Three.js and Tailwind CSS.",
+    tech: ["React", "TypeScript", "Three.js", "Tailwind CSS"],
     github: "https://github.com/nilvaes/portfolio",
     demo: "https://nilvaes.github.io/portfolio/",
   },
